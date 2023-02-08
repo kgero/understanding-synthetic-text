@@ -21,7 +21,7 @@ def index():
 
 @app.route('/get_gpt_response', methods=['POST'])
 def do_get_gpt_response():
-    data = get_gpt_response(request.form['prompt'], int(request.form['max_tokens']))
+    data = get_gpt_response(request.form['prompt'], int(request.form['max_tokens']), float(request.form['temp']))
     resp = Response(json.dumps(data).encode('utf8'), status=200, mimetype='application/json')
     return resp
 

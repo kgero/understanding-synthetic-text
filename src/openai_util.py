@@ -9,7 +9,6 @@ with open(".env", "r") as f:
 		if line.split("=")[0] == "OPENAI_API_KEY":
 			openai.api_key = line.strip("\n").split("=")[1]
 
-t = .5 		# temperature
 n = 1   	# number responses per request
 l = 5		# number of logprobs to return
 
@@ -17,12 +16,12 @@ l = 5		# number of logprobs to return
 
 # documentation on lobprobs: https://beta.openai.com/docs/api-reference/completions/create#completions/create-logprobs
 
-def get_gpt_response(prompt, max_tokens):
+def get_gpt_response(prompt, max_tokens, temp):
 
 	response = openai.Completion.create(
 				model="text-davinci-002", 
 				prompt=prompt, 
-				temperature=t, 
+				temperature=temp, 
 				max_tokens=max_tokens,
 				n=n,
 				logprobs=l)
